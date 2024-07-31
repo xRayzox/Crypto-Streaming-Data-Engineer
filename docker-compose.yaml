@@ -39,7 +39,7 @@ services:
     depends_on:
       - postgres
       - redis
-    networks:
+    
       
 
   postgres:
@@ -72,7 +72,7 @@ services:
       retries: 50
       start_period: 30s
     restart: always
-    networks:
+    
       
 
   airflow-webserver:
@@ -92,8 +92,7 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-    networks:
-      
+   
 
   airflow-scheduler:
     <<: *airflow-common
@@ -110,7 +109,7 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-    networks:
+   
       
 
   airflow-worker:
@@ -133,7 +132,7 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-    networks:
+    
       
 
   airflow-triggerer:
@@ -151,7 +150,7 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-    networks:
+    
       
 
   airflow-init:
@@ -230,7 +229,7 @@ services:
     user: "0:0"
     volumes:
       - ${AIRFLOW_PROJ_DIR:-.}:/sources
-    networks:
+    
       
 
   airflow-cli:
@@ -245,7 +244,7 @@ services:
       - bash
       - -c
       - airflow
-    networks:
+    
       
 
   flower:
@@ -267,7 +266,7 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-    networks:
+    
       
 
   zoo1:
@@ -406,7 +405,7 @@ services:
       - '3306:3306'
     volumes:
       - my-db:/var/lib/mysql
-    networks:
+    
       
 
   metabase-app:
@@ -428,7 +427,7 @@ services:
       - db
     links:
       - db
-    networks:
+    
       
 
   phpmyadmin:
@@ -443,7 +442,7 @@ services:
     restart: always
     ports:
       - 8185:80
-    networks:
+    
       
 
 volumes:
