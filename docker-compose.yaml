@@ -40,7 +40,7 @@ services:
       - postgres
       - redis
     networks:
-      - all-network
+      
 
   postgres:
     image: postgres:13
@@ -58,7 +58,7 @@ services:
       start_period: 5s
     restart: always
     networks:
-      - all-network
+      
 
   redis:
     image: redis:latest
@@ -73,7 +73,7 @@ services:
       start_period: 30s
     restart: always
     networks:
-      - all-network
+      
 
   airflow-webserver:
     <<: *airflow-common
@@ -93,7 +93,7 @@ services:
       airflow-init:
         condition: service_completed_successfully
     networks:
-      - all-network
+      
 
   airflow-scheduler:
     <<: *airflow-common
@@ -111,7 +111,7 @@ services:
       airflow-init:
         condition: service_completed_successfully
     networks:
-      - all-network
+      
 
   airflow-worker:
     <<: *airflow-common
@@ -134,7 +134,7 @@ services:
       airflow-init:
         condition: service_completed_successfully
     networks:
-      - all-network
+      
 
   airflow-triggerer:
     <<: *airflow-common
@@ -152,7 +152,7 @@ services:
       airflow-init:
         condition: service_completed_successfully
     networks:
-      - all-network
+      
 
   airflow-init:
     <<: *airflow-common
@@ -231,7 +231,7 @@ services:
     volumes:
       - ${AIRFLOW_PROJ_DIR:-.}:/sources
     networks:
-      - all-network
+      
 
   airflow-cli:
     <<: *airflow-common
@@ -246,7 +246,7 @@ services:
       - -c
       - airflow
     networks:
-      - all-network
+      
 
   flower:
     <<: *airflow-common
@@ -268,7 +268,7 @@ services:
       airflow-init:
         condition: service_completed_successfully
     networks:
-      - all-network
+      
 
   zoo1:
     image: confluentinc/cp-zookeeper:7.3.2
@@ -280,7 +280,7 @@ services:
       ZOOKEEPER_SERVERS: zoo1:2888:3888
     networks:
       - kafka-network
-      - all-network
+      
 
   kafka1:
     image: confluentinc/cp-kafka:7.3.2
@@ -298,7 +298,7 @@ services:
       KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "true"
     networks:
       - kafka-network
-      - all-network
+      
 
   kafka2:
     image: confluentinc/cp-kafka:7.3.2
@@ -316,7 +316,7 @@ services:
       KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "true"
     networks:
       - kafka-network
-      - all-network
+      
 
   kafka3:
     image: confluentinc/cp-kafka:7.3.2
@@ -334,7 +334,7 @@ services:
       KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "true"
     networks:
       - kafka-network
-      - all-network
+      
 
   kafka-connect:
     image: confluentinc/cp-kafka-connect:7.3.2
@@ -357,7 +357,7 @@ services:
       CONNECT_PLUGIN_PATH: '/usr/share/java,/usr/share/confluent-hub-components'
     networks:
       - kafka-network
-      - all-network
+      
 
   schema-registry:
     image: confluentinc/cp-schema-registry:7.3.2
@@ -369,7 +369,7 @@ services:
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
     networks:
       - kafka-network
-      - all-network
+      
 
   kafka-ui:
     container_name: kafka-ui
@@ -391,7 +391,7 @@ services:
       DYNAMIC_CONFIG_ENABLED: 'true'
     networks:
       - kafka-network
-      - all-network
+      
 
   db:
     image: mysql:8.0
@@ -407,7 +407,7 @@ services:
     volumes:
       - my-db:/var/lib/mysql
     networks:
-      - all-network
+      
 
   metabase-app:
     image: metabase/metabase
@@ -429,7 +429,7 @@ services:
     links:
       - db
     networks:
-      - all-network
+      
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -444,7 +444,7 @@ services:
     ports:
       - 8185:80
     networks:
-      - all-network
+      
 
 volumes:
   my-db:
@@ -453,5 +453,4 @@ volumes:
 networks:
   kafka-network:
     driver: bridge
-  all-network:
-    external: true
+  
