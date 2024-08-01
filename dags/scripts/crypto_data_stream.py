@@ -15,7 +15,7 @@ def data_stream():
     Gets the data from the API and sends it to Kafka producer
     """
     try:
-        api_key = os.environ.get("COINMARKETCAP_API_KEY")
+        api_key = os.environ.get("b9b1d8e0-2049-4d6c-b85e-99833548b3e6")
     except:
         logger.error(f"API key couldn't be obtained from the os.")
     
