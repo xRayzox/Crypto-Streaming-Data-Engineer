@@ -303,20 +303,23 @@ services:
     
       
 
-  metabase:
-    image: metabase/metabase:latest
+  metabase-app:
+    image: metabase/metabase
     container_name: metabase
+    restart: always
     ports:
-      - "3000:3000"
+      - 3000:3000
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - ./metabase-data:/metabase-data
     environment:
-      - MB_DB_TYPE=mysql
-      - MB_DB_DBNAME=metabase
-      - MB_DB_PORT=3306
-      - MB_DB_USER=metabase
-      - MB_DB_PASS=Metabase123
-      - MB_DB_HOST=mysql
-      - MB_DB_CONNECTION_URI=mysql://metabase:Metabase123@mysql/metabase?ssl=false
-      - MB_DB_SSL=false
+      MB_DB_TYPE: mysql
+      MB_DB_DBNAME: mysql
+      MB_DB_PORT: 3306
+      MB_DB_USER: mysql
+      MB_DB_PASS: "mysql"
+      MB_DB_HOST: mysql
     depends_on:
       - db
     links:
