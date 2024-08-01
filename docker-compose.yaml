@@ -306,8 +306,6 @@ services:
   metabase:
     image: metabase/metabase:latest
     container_name: metabase
-    depends_on:
-      - mysql
     ports:
       - "3000:3000"
     environment:
