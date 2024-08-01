@@ -300,6 +300,7 @@ volumes:
   postgres-db-volume:
   postgres-2-db-volume:
   pgadmin-2-data:
+  pgadmin-data:
 
 networks:
   kafka-network:
