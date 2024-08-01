@@ -277,6 +277,8 @@
         MB_DB_USER: mysql
         MB_DB_PASS: "mysql"
         MB_DB_HOST: mysql
+        MB_DB_URL: jdbc:mysql://mysql:3306/mysql?useSSL=false&allowPublicKeyRetrieval=true
+
       depends_on:
         - db
       
